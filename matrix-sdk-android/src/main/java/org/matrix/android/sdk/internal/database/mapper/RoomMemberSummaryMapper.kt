@@ -25,7 +25,7 @@ internal object RoomMemberSummaryMapper {
     fun map(roomMemberSummaryEntity: RoomMemberSummaryEntity): RoomMemberSummary {
         return RoomMemberSummary(
                 userId = roomMemberSummaryEntity.userId,
-                userPresence = roomMemberSummaryEntity.userPresence?.toUserPresence(),
+                userPresence = roomMemberSummaryEntity.userPresenceEntity?.toUserPresence(),
                 avatarUrl = roomMemberSummaryEntity.avatarUrl,
                 displayName = roomMemberSummaryEntity.displayName,
                 membership = roomMemberSummaryEntity.membership

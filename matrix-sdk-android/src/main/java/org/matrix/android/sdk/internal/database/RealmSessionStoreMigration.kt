@@ -361,6 +361,6 @@ internal object RealmSessionStoreMigration : RealmMigration {
                 ?.addRealmObjectField(RoomSummaryEntityFields.DIRECT_USER_PRESENCE.`$`, userPresenceEntity)
 
         realm.schema.get("RoomMemberSummaryEntity")
-                ?.addRealmObjectField(RoomMemberSummaryEntityFields.USER_PRESENCE.`$`, userPresenceEntity)
+                ?.addRealmObjectField(RoomMemberSummaryEntityFields.USER_PRESENCE_ENTITY.`$`, userPresenceEntity)
     }
 }

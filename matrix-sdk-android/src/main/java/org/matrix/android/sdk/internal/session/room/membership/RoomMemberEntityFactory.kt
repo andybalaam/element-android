@@ -32,7 +32,7 @@ internal object RoomMemberEntityFactory {
                 avatarUrl = roomMember.avatarUrl
         ).apply {
             membership = roomMember.membership
-            userPresence = presence
+            userPresenceEntity = presence
         }
     }
 }

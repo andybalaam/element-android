@@ -20,16 +20,4 @@ data class UserPresence(
         val statusMessage: String? = null,
         val isCurrentlyActive: Boolean? = null,
         val presence: PresenceEnum = PresenceEnum.OFFLINE
-) {
-    /**
-     * Transforms the presence to a human readable string from the given multilingual value
-     * Currently we support only online/offline (unavailable will be marked as offline)
-     */
-    fun toHumanReadable(onlineLabel: String, offlineLabel: String): String {
-        return when (presence) {
-            PresenceEnum.ONLINE      -> onlineLabel
-            PresenceEnum.OFFLINE     -> offlineLabel
-            PresenceEnum.UNAVAILABLE -> offlineLabel
-        }
-    }
-}
+)

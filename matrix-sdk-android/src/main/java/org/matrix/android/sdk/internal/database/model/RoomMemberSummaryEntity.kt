@@ -40,7 +40,7 @@ internal open class RoomMemberSummaryEntity(@PrimaryKey var primaryKey: String =
             membershipStr = value.name
         }
 
-    var userPresence: UserPresenceEntity? = null
+    var userPresenceEntity: UserPresenceEntity? = null
         set(value) {
             if (value != field) field = value
         }

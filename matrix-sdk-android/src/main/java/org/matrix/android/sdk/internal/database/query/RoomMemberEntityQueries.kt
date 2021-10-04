@@ -37,8 +37,9 @@ internal fun RoomMemberSummaryEntity.Companion.where(realm: Realm, roomId: Strin
 internal fun RoomMemberSummaryEntity.Companion.updateUserPresence(realm: Realm, userId: String, userPresenceEntity: UserPresenceEntity) {
     realm.where<RoomMemberSummaryEntity>()
             .equalTo(RoomMemberSummaryEntityFields.USER_ID, userId)
+            .isNull(RoomMemberSummaryEntityFields.USER_PRESENCE_ENTITY.`$`)
             .findAll()
             .map {
-                it.userPresence = userPresenceEntity
+                it.userPresenceEntity = userPresenceEntity
             }
 }

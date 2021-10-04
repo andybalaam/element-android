@@ -65,10 +65,6 @@ import org.matrix.android.sdk.internal.session.room.typing.TypingEventContent
 import org.matrix.android.sdk.internal.session.sync.InitialSyncStrategy
 import org.matrix.android.sdk.internal.session.sync.SyncResponsePostTreatmentAggregator
 import org.matrix.android.sdk.internal.session.sync.initialSyncStrategy
-import org.matrix.android.sdk.internal.session.sync.model.InvitedRoomSync
-import org.matrix.android.sdk.internal.session.sync.model.LazyRoomSyncEphemeral
-import org.matrix.android.sdk.internal.session.sync.model.RoomSync
-import org.matrix.android.sdk.internal.session.sync.model.RoomsSyncResponse
 import org.matrix.android.sdk.internal.session.sync.parsing.RoomSyncAccountDataHandler
 import org.matrix.android.sdk.internal.util.computeBestChunkSize
 import timber.log.Timber

@@ -162,8 +162,7 @@ internal class SyncResponseHandler @Inject constructor(
     private fun dispatchInvitedRoom(roomsSyncResponse: RoomsSyncResponse) {
         roomsSyncResponse.invite.keys.forEach { roomId ->
             sessionListeners.dispatch { session, listener ->
-                listener.onNewInvitedRoom(session, roomId)
-            }
+                listener.onNewInvitedRoom(session, roomId) }
         }
     }
 

@@ -30,10 +30,10 @@ import org.matrix.android.sdk.internal.di.UserId
 import org.matrix.android.sdk.internal.network.GlobalErrorReceiver
 import org.matrix.android.sdk.internal.network.executeRequest
 import org.matrix.android.sdk.internal.session.room.RoomAPI
+import org.matrix.android.sdk.internal.session.sync.handler.room.ReadReceiptHandler
 import org.matrix.android.sdk.internal.session.sync.handler.room.RoomFullyReadHandler
 import org.matrix.android.sdk.internal.task.Task
 import org.matrix.android.sdk.internal.util.awaitTransaction
-import org.matrix.android.sdk.internal.session.sync.handler.room.ReadReceiptHandler
 import timber.log.Timber
 import javax.inject.Inject
 import kotlin.collections.set

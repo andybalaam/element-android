@@ -36,9 +36,9 @@ import org.matrix.android.sdk.internal.session.notification.ProcessEventForPushT
 import org.matrix.android.sdk.internal.session.sync.handler.CryptoSyncHandler
 import org.matrix.android.sdk.internal.session.sync.handler.GroupSyncHandler
 import org.matrix.android.sdk.internal.session.sync.handler.PresenceSyncHandler
-import org.matrix.android.sdk.internal.session.sync.handler.room.RoomSyncHandler
 import org.matrix.android.sdk.internal.session.sync.handler.SyncResponsePostTreatmentAggregatorHandler
 import org.matrix.android.sdk.internal.session.sync.handler.UserAccountDataSyncHandler
+import org.matrix.android.sdk.internal.session.sync.handler.room.RoomSyncHandler
 import org.matrix.android.sdk.internal.util.awaitTransaction
 import org.matrix.android.sdk.internal.worker.WorkerParamsFactory
 import timber.log.Timber

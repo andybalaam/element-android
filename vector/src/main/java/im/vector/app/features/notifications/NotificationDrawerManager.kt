@@ -30,6 +30,7 @@ import im.vector.app.core.utils.FirstThrottler
 import im.vector.app.features.displayname.getBestName
 import im.vector.app.features.invite.AutoAcceptInvites
 import im.vector.app.features.settings.VectorPreferences
+import me.gujun.android.span.Span
 import me.gujun.android.span.span
 import org.matrix.android.sdk.api.session.Session
 import org.matrix.android.sdk.api.session.content.ContentUrlResolver
@@ -261,7 +262,7 @@ class NotificationDrawerManager @Inject constructor(private val context: Context
                     is InviteNotifiableEvent  -> {
                         if (autoAcceptInvites.hideInvites) {
                             // Forget this event
-                           eventIterator.remove()
+                            eventIterator.remove()
                         } else {
                             invitationEvents.add(event)
                         }
@@ -347,38 +348,7 @@ class NotificationDrawerManager @Inject constructor(private val context: Context
                     notificationUtils.cancelNotificationMessage(event.eventId, ROOM_EVENT_NOTIFICATION_ID)
                 }
 
-                try {
-                    if (events.size == 1) {
-                        val event = events[0]
-                        if (roomEventGroupInfo.isDirect) {
-                            val line = span {
-                                span {
-                                    textStyle = "bold"
-                                    +String.format("%s: ", event.senderName)
-                                }
-                                +(event.description ?: "")
-                            }
-                            summaryInboxStyle.addLine(line)
-                        } else {
-                            val line = span {
-                                span {
-                                    textStyle = "bold"
-                                    +String.format("%s: %s ", roomName, event.senderName)
-                                }
-                                +(event.description ?: "")
-                            }
-                            summaryInboxStyle.addLine(line)
-                        }
-                    } else {
-                        val summaryLine = stringProvider.getQuantityString(
-                                R.plurals.notification_compat_summary_line_for_room, events.size, roomName, events.size)
-                        summaryInboxStyle.addLine(summaryLine)
-                    }
-                } catch (e: Throwable) {
-                    // String not found or bad format
-                    Timber.v("%%%%%%%% REFRESH NOTIFICATION DRAWER failed to resolve string")
-                    summaryInboxStyle.addLine(roomName)
-                }
+                summaryInboxStyle.addLine(createRoomMessagesGroupSummaryLine(events, roomEventGroupInfo))
 
                 if (firstTime || roomEventGroupInfo.hasNewEvent) {
                     // Should update displayed notification
@@ -552,6 +522,46 @@ class NotificationDrawerManager @Inject constructor(private val context: Context
             }
             // notice that we can get bit out of sync with actual display but not a big issue
             firstTime = false
+        }
+    }
+
+    private fun createRoomMessagesGroupSummaryLine(events: List<NotifiableMessageEvent>, groupInfo: RoomEventGroupInfo): CharSequence {
+        return try {
+            when (events.size) {
+                1    -> createFirstMessageSummaryLine(events.first(), groupInfo)
+                else -> {
+                    stringProvider.getQuantityString(
+                            R.plurals.notification_compat_summary_line_for_room,
+                            events.size,
+                            groupInfo.roomDisplayName,
+                            events.size
+                    )
+                }
+            }
+        } catch (e: Throwable) {
+            // String not found or bad format
+            Timber.v("%%%%%%%% REFRESH NOTIFICATION DRAWER failed to resolve string")
+            groupInfo.roomDisplayName
+        }
+    }
+
+    private fun createFirstMessageSummaryLine(event: NotifiableMessageEvent, groupInfo: RoomEventGroupInfo): Span {
+        return if (groupInfo.isDirect) {
+            span {
+                span {
+                    textStyle = "bold"
+                    +String.format("%s: ", event.senderName)
+                }
+                +(event.description ?: "")
+            }
+        } else {
+            span {
+                span {
+                    textStyle = "bold"
+                    +String.format("%s: %s ", groupInfo.roomDisplayName, event.senderName)
+                }
+                +(event.description ?: "")
+            }
         }
     }
 

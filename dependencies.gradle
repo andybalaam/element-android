@@ -128,7 +128,7 @@ ext.libs = [
                 'emojiGoogle'            : "com.vanniktech:emoji-google:$vanniktechEmoji"
         ],
         tests       : [
-                'kluent'                 : "org.amshove.kluent:kluent-android:1.68",
+                'kluent'                 : "org.amshove.kluent:kluent-android:1.71",
                 'timberJunitRule'        : "net.lachlanmckee:timber-junit-rule:1.0.1",
                 'junit'                  : "junit:junit:4.13.2"
         ]
